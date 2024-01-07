@@ -1,11 +1,19 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from util.rating_games import get_games_data_with_rating
+from flask_cors import CORS
 import os
+from dotenv import load_dotenv
+    
+import util.rating_games as rating_games
+
+load_dotenv()
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://postgres:{os.getenv("PASSWORD")}@localhost/nbaapp'
 db = SQLAlchemy(app) 
+CORS(app)
+
+
 
 @app.route('/')
 def greet():
@@ -13,7 +21,7 @@ def greet():
 
 @app.route('/games/<date>', methods=['GET'])
 def ratedGames(date): 
-    return get_games_data_with_rating(date)
+    return rating_games.get_games_data_with_rating(db, date)
 
 if __name__ == '__main__':
     app.run()

@@ -74,12 +74,12 @@ def get_fta_in_game_rating(ftas):
     else:
         return 1
     
-def get_slow_game_rating(ftas, pfs):
-    fta_rating = get_fta_in_game_rating(ftas)
-    fouls_rating = get_fouls_in_game_rating(pfs)
-    print('FTA RATING: ', fta_rating)
-    print('FOULS RATING: ', fouls_rating)
-    return int((fta_rating + fouls_rating) / 2)
+# def get_slow_game_rating(ftas, pfs):
+#     fta_rating = get_fta_in_game_rating(ftas)
+#     fouls_rating = get_fouls_in_game_rating(pfs)
+#     print('FTA RATING: ', fta_rating)
+#     print('FOULS RATING: ', fouls_rating)
+#     return int((fta_rating + fouls_rating) / 2)
      
 def get_star_power_rating(players):
     stars = 0
@@ -121,10 +121,12 @@ def get_game_rating_by_boxscore(boxscore):
             player_name = re.search('(.*?). (.*?) ', player).group().strip()
             players.append(player_name)
 
-    ratings['competitive'] = get_score_differential_rating(scores[0], scores[1])
-    ratings['highScoring'] = get_high_scoring_rating(scores[0], scores[1])
-    ratings['pauses'] = get_slow_game_rating(fouls, ftas)  
-    ratings['starPower'] = get_star_power_rating(players)
+    ratings['competitive_rating'] = get_score_differential_rating(scores[0], scores[1])
+    ratings['highscoring_rating'] = get_high_scoring_rating(scores[0], scores[1])
+    # ratings['pauses'] = get_slow_game_rating(fouls, ftas)  
+    ratings['fta_rating'] = get_fouls_in_game_rating(ftas)
+    ratings['fouls_rating'] = get_fouls_in_game_rating(fouls)
+    ratings['star_power_rating'] = get_star_power_rating(players)
 
     # PRINTING RATINGS
     for k, v in ratings.items():
