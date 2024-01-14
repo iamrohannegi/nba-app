@@ -4,7 +4,6 @@ from flask_cors import CORS
 import os
 from dotenv import load_dotenv
     
-import util.rating_games as rating_games
 
 load_dotenv()
 
@@ -19,6 +18,7 @@ CORS(app)
 def greet():
     return "Hello world"
 
+import backend.util.rating_games as rating_games
 @app.route('/games/<date>', methods=['GET'])
 def ratedGames(date): 
     return rating_games.get_games_data_with_rating(db, date)

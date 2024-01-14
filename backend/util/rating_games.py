@@ -1,8 +1,8 @@
-from util.game_schedule import get_games_by_date
-from util.boxscore import get_boxscore_by_link
-from util.rating_boxscore import get_game_rating_by_boxscore
+from .game_schedule import get_games_by_date
+from .boxscore import get_boxscore_by_link
+from .rating_boxscore import get_game_rating_by_boxscore
 from datetime import datetime
-import models 
+from ..models import models
 
 
 def format_rating(entries):
@@ -19,6 +19,18 @@ def format_rating(entries):
                 'highscoring_rating': entry.highscoring_rating,
                 'star_power_rating': entry.star_power_rating,
                 'overall_rating': entry.overall_rating,
+            },
+            'teams': {
+                'winner': {
+                    'team': entry.winning_team,
+                    'record': entry.winning_team_record,
+                    'score': entry.winner_score
+                },
+                'loser': {
+                    'team': entry.losing_team,
+                    'record': entry.losing_team_record,
+                    'score': entry.loser_score
+                }
             }
         }
     return result
@@ -42,13 +54,33 @@ def get_games_data_with_rating(db, date):
 
             print('---Teams--')
             # winner = None
-            games[game_name]['teams'] = {}
-            for team in game['competitors']:
-                games[game_name]['teams'][team['displayName']] = {
-                    'record': team['record'],
-                    'score': team['score']
-                }
-                # winner = team['displayName'] if team['winner'] else None
+            winner_team = game['competitors'][0] if int(game['competitors'][0]['score']) > int(game['competitors'][1]['score']) else game['competitors'][1]
+            loser_team = game['competitors'][0] if int(game['competitors'][0]['score']) < int(game['competitors'][1]['score']) else game['competitors'][1]
+            # games[game_name]['teams'] = {}
+            # for team in game['competitors']:
+            #     games[game_name]['teams'][team['displayName']] = {
+            #         'record': team['record'],
+            #         'score': team['score']
+            #     }
+            winner = {
+                'team': winner_team['displayName'],
+                'record': winner_team['record'],
+                'score': winner_team['score'],
+            }
+            loser = {
+                'team': loser_team['displayName'],
+                'record': loser_team['record'],
+                'score': loser_team['score'],
+            }
+
+            games[game_name]['teams'] = {
+                'winner': winner,
+                'loser': loser
+            }
+
+        
+    
+            # winner = team['displayName'] if team['winner'] else None
             # differential = abs(int(game['competitors'][0]['score']) - int(game['competitors'][1]['score']))
             # print(f'{winner} won by {differential} points.')
 
@@ -62,6 +94,8 @@ def get_games_data_with_rating(db, date):
             game_data = {
                 'game_name':game_name,
                 'game_date':game_date, 
+                'winner': winner,
+                'loser': loser,
             }
             game_rating = models.Rating(games[game_name]['id'], game_data, games[game_name]['ratings'])
             db.session.add(game_rating)
