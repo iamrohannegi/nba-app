@@ -1,0 +1,76 @@
+.gamecard {
+    border: 5px solid #eee;   
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem 3rem;
+}
+
+.gamecard__name {
+    font-size: 2.4rem;
+    flex-basis: 100%;
+}
+
+.gamecard__sectionheading {
+    font-weight: 300;
+    text-transform: uppercase;
+    font-size: 4rem;
+}
+
+.gamecard__ratings {
+    flex: 2;
+}
+
+.gamecard__ratings ul {
+    list-style-type: none;   
+    display: flex;
+    flex-wrap: wrap;
+    border: 3px solid #1D4289;
+    
+}
+
+.gamecard__ratings li {
+    display: flex;
+    flex: 1 1 33.33%;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    border: 3px solid #1D4289;
+}
+
+.gamecard__ratings li:nth-child(5) {
+    order: 1;
+    flex: 1 1 100%;
+}
+
+.gamecard__ratingname {
+    text-transform: uppercase;
+    font-weight: 800;
+    flex: 1;
+}
+
+.gamecard__rating {
+    flex: 1;
+    font-weight: 800;
+    font-size: 2.5rem;
+}
+
+.gamecard__score {
+    margin-left: 2rem;
+    flex: 1;
+    font-size: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.gamecard__score .gamecard__sectionheading {
+    flex: 1 1 100%;
+}
+
+.gamecard__teamdata {
+
+}
+
+.gamecard__teamscore {
+
+}

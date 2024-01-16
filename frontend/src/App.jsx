@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 
-import GameCard from './components/GameCard';
+import CardsContainer from './components/CardsContainer';
+import Header from './components/Header';
 
 const baseUrl = "http://localhost:5000/games/"
 let firstLoad = true
@@ -29,15 +30,14 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <p>Hello</p>
-      <button>Click to get results</button>
-      { !games && <p>Loading...</p>}
-      { games && Object.entries(games).map(([gameName, gameData]) => {
-        return (
-          <GameCard key={gameData.id} id={gameData.id} name={gameName} ratings={gameData['ratings']}/>
-      )})}
-    </div>
+    <>
+      <Header/>
+      <div className="App">
+        { !games && <p>Loading...</p>}
+        <h2>Yesterday's Games</h2>
+        { games && <CardsContainer cards={games} />}
+      </div>
+    </>
   );
 }
 
