@@ -8,9 +8,10 @@
 .gamecard__name {
     font-size: 2.4rem;
     flex-basis: 100%;
+    margin-bottom: 1.5rem;
 }
 
-.gamecard__sectionheading {
+.gamecard__heading {
     font-weight: 300;
     text-transform: uppercase;
     font-size: 4rem;
@@ -23,18 +24,21 @@
 .gamecard__ratings ul {
     list-style-type: none;   
     display: flex;
-    flex-wrap: wrap;
-    border: 3px solid #1D4289;
-    
+    flex-direction: column;
+   
 }
 
 .gamecard__ratings li {
     display: flex;
     flex: 1 1 33.33%;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
-    padding: 2rem;
-    border: 3px solid #1D4289;
+    padding: 0rem 1rem;
+}
+
+
+.gamecard__ratings li:not(:last-child) {
+    border-bottom: 3px dotted #000
 }
 
 .gamecard__ratings li:nth-child(5) {
@@ -46,10 +50,10 @@
     text-transform: uppercase;
     font-weight: 800;
     flex: 1;
+    
 }
 
 .gamecard__rating {
-    flex: 1;
     font-weight: 800;
     font-size: 2.5rem;
 }
@@ -57,20 +61,36 @@
 .gamecard__score {
     margin-left: 2rem;
     flex: 1;
-    font-size: 2.5rem;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
 }
 
-.gamecard__score .gamecard__sectionheading {
+.gamecard__score .gamecard__heading {
     flex: 1 1 100%;
 }
 
 .gamecard__teamdata {
-
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 2.4rem;
+    font-weight: 400;
+    line-height: 1.2
 }
 
-.gamecard__teamscore {
 
+.gamecard__teamscore {
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.gamecard__overallrating {
+    flex-basis: 100%;
+    margin-top: 2rem;
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.gamecard__overallrating span:not(:last-child) {
+    margin-right: 1rem
 }

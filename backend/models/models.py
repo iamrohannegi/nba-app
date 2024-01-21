@@ -29,12 +29,12 @@ class Rating(app.db.Model):
         self.losing_team = game_data['loser']['team']
         self.losing_team_record = game_data['loser']['record']
         self.loser_score = game_data['loser']['score']
-        self.fta_rating = ratings['fta_rating']
-        self.fouls_rating = ratings['fouls_rating']
-        self.competitive_rating = ratings['competitive_rating']
-        self.highscoring_rating = ratings['highscoring_rating']
-        self.star_power_rating = ratings['star_power_rating']
-        self.overall_rating = ratings['overall_rating']
+        self.overall_rating = game_data['overall_rating']
+        self.fta_rating = ratings['less_ftas']
+        self.fouls_rating = ratings['less_fouls']
+        self.competitive_rating = ratings['competitive']
+        self.highscoring_rating = ratings['high_scoring']
+        self.star_power_rating = ratings['star_power']
     
     
         

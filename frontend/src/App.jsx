@@ -3,6 +3,7 @@ import './App.css';
 
 import CardsContainer from './components/CardsContainer';
 import Header from './components/Header';
+import Container from './components/Container';
 
 const baseUrl = "http://localhost:5000/games/"
 let firstLoad = true
@@ -32,11 +33,11 @@ function App() {
   return (
     <>
       <Header/>
-      <div className="App">
+      <Container>
         { !games && <p>Loading...</p>}
         <h2>Yesterday's Games</h2>
         { games && <CardsContainer cards={games} />}
-      </div>
+      </Container>
     </>
   );
 }
