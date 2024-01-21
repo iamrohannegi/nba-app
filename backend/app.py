@@ -20,8 +20,12 @@ def greet():
 
 import backend.util.rating_games as rating_games
 @app.route('/games/<date>', methods=['GET'])
-def ratedGames(date): 
+def rated_games(date): 
     return rating_games.get_games_data_with_rating(db, date)
+
+@app.route('/games/top', methods=['GET'])
+def top_games():
+    return rating_games.get_top_rated_games(db)
 
 if __name__ == '__main__':
     app.run()
