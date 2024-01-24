@@ -116,6 +116,8 @@ def get_games_ratings_from_req(db, date):
         db.session.add(game_rating)
         db.session.commit()
         # print('---------------------------------')
+    
+    return games
 
 
 def get_top_rated_games(db): 

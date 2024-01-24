@@ -3,15 +3,24 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import os
 from dotenv import load_dotenv
-    
-
 load_dotenv()
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://postgres:{os.getenv("PASSWORD")}@localhost/nbaapp'
-db = SQLAlchemy(app) 
-CORS(app)
 
+def create_app():
+    app = Flask(__name__)
+
+    # Local database on machine
+    # app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://postgres:{os.getenv("PASSWORD")}@localhost/nbaapp'
+
+    # External hosted database on render
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+    CORS(app)
+
+    return app 
+
+
+app = create_app()
+db = SQLAlchemy(app) 
 
 
 @app.route('/')

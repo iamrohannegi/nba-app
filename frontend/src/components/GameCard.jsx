@@ -1,21 +1,27 @@
+import { useContext } from 'react';
 import styles from './GameCard.module.css';
+import ScoreContext from '../store/score-context';
 
 const GameCard = (props) => {
-    return (
-        <div className={styles.gamecard}>
-            <h3 className={styles.gamecard__name}>{props.name}</h3>
-            <div className={styles.gamecard__ratings}>
-              <h4 className={styles.gamecard__heading}>Ratings</h4>
-              <ul>
-                { Object.entries(props.ratings).map(([ratingName, rating]) => {
-                  return (
-                      <li key={`${props.id}/${ratingName}`}>
-                        <span className={styles.gamecard__ratingname}>{ratingName.split('_').join(' ')}</span>
-                        <span className={styles.gamecard__rating}>{rating}</span>
-                      </li>
-                )})}
-              </ul>
-            </div>
+  const scoreCtx = useContext(ScoreContext);
+
+  return (
+      <div className={styles.gamecard}>
+          <h3 className={styles.gamecard__name}>{props.name}</h3>
+          <div className={styles.gamecard__ratings}>
+            <h4 className={styles.gamecard__heading}>Ratings</h4>
+            <ul>
+              { Object.entries(props.ratings).map(([ratingName, rating]) => {
+                return (
+                    <li key={`${props.id}/${ratingName}`}>
+                      <span className={styles.gamecard__ratingname}>{ratingName.split('_').join(' ')}</span>
+                      <span className={styles.gamecard__rating}>{rating}</span>
+                    </li>
+              )})}
+            </ul>
+          </div>
+          {
+            scoreCtx.isScoreVisible && 
             <div className={styles.gamecard__score}>
               <h4 className={styles.gamecard__heading}>Scores</h4>
               <div>
@@ -33,14 +39,15 @@ const GameCard = (props) => {
                 <span className={styles.gamecard__teamscore}>{props.teams.loser.score}</span>
               </div>
             </div>
-            <div className={styles.gamecard__overallrating}>
-              <p>
-                <span>Overall Rating</span>
-                <span>{props.overall_rating}</span>
-              </p>
-            </div>
-        </div>
-    );
+          }
+          <div className={styles.gamecard__overallrating}>
+            <p>
+              <span>Overall Rating</span>
+              <span>{props.overall_rating}</span>
+            </p>
+          </div>
+      </div>
+  );
 };
 
 export default GameCard

@@ -11,6 +11,7 @@ python-dotenv = "*"
 flask-cors = "*"
 requests = "*"
 bs4 = "*"
+gunicorn = "*"
 
 [dev-packages]
 
