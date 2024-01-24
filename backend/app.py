@@ -18,8 +18,7 @@ def create_app():
 
     return app 
 
-
-from run import app 
+app = create_app()
 db = SQLAlchemy(app) 
 
 
