@@ -26,7 +26,7 @@ db = SQLAlchemy(app)
 def greet():
     return "Hello world"
 
-import backend.util.rating_games as rating_games
+from .util import rating_games as rating_games
 @app.route('/games/<date>', methods=['GET'])
 def rated_games(date): 
     return rating_games.get_games_data_with_rating(db, date)
