@@ -7,7 +7,6 @@ import Header from './components/Header';
 import Container from './components/Container';
 
 const baseUrl = "https://nba-game-rating.onrender.com/games/"
-
 let firstLoad = true
 
 function App() {
