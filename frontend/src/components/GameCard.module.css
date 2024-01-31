@@ -100,3 +100,19 @@
 .gamecard__overallrating span:not(:last-child) {
     margin-right: 1rem
 }
+
+@media (max-width: 457px) {
+    .gamecard {
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+    .gamecard__score {
+        margin-top: 2rem;
+        margin-left: 0;
+        text-align: start;
+    }
+
+    .gamecard__teamdata {
+        justify-content: flex-start;
+    }
+}

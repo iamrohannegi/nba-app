@@ -38,11 +38,10 @@ def format_rating(entries):
 
 def get_games_data_with_rating(db, date):   
     game_date = datetime.strptime(date, '%Y%m%d')
-    if db.session.query(models.Rating).filter_by(game_date=game_date).first():
-        entries = db.session.query(models.Rating).filter_by(game_date=game_date).order_by(models.Rating.overall_rating.desc()).all()
-        return format_rating(entries)
-    else: 
-        return get_games_ratings_from_req(db, date)
+    if not db.session.query(models.Rating).filter_by(game_date=game_date).first(): 
+        get_games_ratings_from_req(db, date)
+    entries = db.session.query(models.Rating).filter_by(game_date=game_date).order_by(models.Rating.overall_rating.desc()).all()
+    return format_rating(entries)
 
 def get_games_ratings_from_req(db, date):
     games = {}
@@ -115,13 +114,12 @@ def get_games_ratings_from_req(db, date):
         game_rating = models.Rating(games[game_name]['id'], game_data, ratings)
         db.session.add(game_rating)
         db.session.commit()
-        # print('---------------------------------')
+        # print('---------------------------------') 
     
-    return games
 
 
 def get_top_rated_games(db): 
-    today = datetime.utcnow()
+    today = datetime.now()
     today = today.replace(hour=0, minute=0, second=0, microsecond=0)
     # Check if we have game ratings for the last five days in the database
     game_date = today

@@ -16,4 +16,40 @@
     font-size: 2.4rem;
     font-weight: 400;
     margin-left: 1rem;
+    display: inline-block;
+}
+
+.header div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media (max-width: 900px) {
+    .heading {
+        font-size: 3.5rem;
+        line-height: 1;
+    }
+    .heading span {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 850px) {
+    .heading {
+        margin-bottom: 1.5rem;
+    }
+    .header div {
+        flex-wrap: wrap
+    }
+}
+
+@media (max-width: 600px) {
+    .heading {
+        flex-wrap: wrap
+    }
+    .heading span {
+        margin-top: 1rem;
+        margin-left: 0;
+    }
 }

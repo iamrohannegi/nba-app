@@ -6,7 +6,8 @@ import CardsContainer from './components/CardsContainer';
 import Header from './components/Header';
 import Container from './components/Container';
 
-const baseUrl = "http://localhost:5000/games/"
+const baseUrl = "https://nba-game-rating.onrender.com/games/"
+
 let firstLoad = true
 
 function App() {
@@ -56,14 +57,13 @@ function App() {
     <ScoreContext.Provider value={{ isScoreVisible: isScoreVisible, handleScoreVisibilityChange: handleScoreVisibilityChange}}>
       <Header/>
       <Container>
+        <h2 className="section-heading">Yesterday's Games</h2>
         { !games && <p>Loading...</p>}
-        <h2>Yesterday's Games</h2>
         { games && <CardsContainer cards={games} />}
 
-        <h2>Top picks from last 5 days</h2>
-        { !games && <p>Loading...</p>}
+        <h2 className="section-heading">Top picks from last 5 days</h2>
+        { !topGames && <p>Loading...</p>}
         { topGames && <CardsContainer cards={topGames} />}
-
       </Container>
     </ScoreContext.Provider>
   );
