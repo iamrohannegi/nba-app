@@ -6,8 +6,8 @@ import CardsContainer from './components/CardsContainer';
 import Header from './components/Header';
 import Container from './components/Container';
 
-// const baseUrl = "https://nba-game-rating.onrender.com/games/"
-const baseUrl = "http://localhost:5000/games/"
+const baseUrl = "https://nba-game-rating.onrender.com/games/"
+// const baseUrl = "http://localhost:5000/games/"
 let firstLoad = true
 
 function App() {
