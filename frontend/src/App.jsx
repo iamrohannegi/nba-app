@@ -63,6 +63,7 @@ function App() {
     }
 
     setLoading(true);
+    setDateGames(null);
     const formattedDate = value.split("-").join(""); 
     const res = await fetch(`${baseUrl}${formattedDate}`);
     const data = await res.json();

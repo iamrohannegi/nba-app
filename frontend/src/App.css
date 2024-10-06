@@ -31,7 +31,6 @@ body {
 
 .search-div {
   display: flex;
-
 }
 
 .search-div label {
@@ -66,4 +65,27 @@ body {
 
 .search-div button:active {
   transform: scale(0.8);
+}
+
+@media (max-width: 30rem) {
+  .search-div {
+    display: block;
+  }
+  .search-div button{
+    display: block;
+    margin-top: 1.5rem;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 20rem) {
+  .search-div label {
+    display: block;
+  }
+  
+  .search-div input {
+    display: block;
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
 }
