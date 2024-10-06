@@ -47,6 +47,10 @@ def get_games_ratings_from_req(db, date):
     games = {}
     all_games = get_games_by_date(date)
 
+    #If we couldn't find any games return None
+    if not all_games:
+        return None 
+    
     for game in all_games:
         game_name = game['name']
         games[game_name] = {

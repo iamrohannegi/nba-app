@@ -8,6 +8,9 @@ def get_games_by_date(date):
     data.raise_for_status()
 
     # Get all the events(games) on the day: 
+    if 'events' not in data.json()['sports'][0]['leagues'][0]:
+        return None
+
     events = data.json()['sports'][0]['leagues'][0]['events']
 
     return events

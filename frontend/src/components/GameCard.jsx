@@ -43,7 +43,7 @@ const GameCard = (props) => {
           <div className={styles.gamecard__overallrating}>
             <p>
               <span>Overall Rating</span>
-              <span>{props.overall_rating}</span>
+              <span>{parseFloat(props.overall_rating).toFixed(2)}</span>
             </p>
           </div>
       </div>
