@@ -116,12 +116,12 @@ def get_game_rating_by_boxscore(boxscore):
             if boxscore[team_name][player]['MIN'].startswith('DNP') or not boxscore[team_name][player]['MIN']:
                 continue
             print(player)
-            player_name = re.search('(.*?). (.*?)#', player)
-            if not player_name:
-                player_name = re.search('(.*?). (.*?) ', player)
+            player_name = re.search('[A-Z]. [^#]+', player)
+            # if not player_name:
+            #     player_name = re.search('(.*?). (.*?) ', player)
             if not player_name:
                 continue
-            players.append(f'{player_name.group(1)}. {player_name.group(2)}')
+            players.append(player_name.group().strip())
 
     ratings = {
         'competitive': get_score_differential_rating(scores[0], scores[1]),
